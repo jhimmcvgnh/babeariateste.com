@@ -416,6 +416,9 @@ body {
     .elementor-2942 .elementor-element.elementor-element-a4e792a {
         padding: 150px 20px;
     }
+    .mobile-menu-toggle {
+        display: none !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -424,5 +427,8 @@ body {
     }
     .nav-links {
         display: none; /* Can add a mobile menu later if needed */
+    }
+    .mobile-menu-toggle {
+        display: none !important;
     }
 }

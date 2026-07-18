@@ -308,7 +308,7 @@ body { padding-top: 0 !important; }
         display: none;
     }
     .mobile-menu-toggle {
-        display: flex;
+        display: none !important;
     }
     .navbar-container {
         padding: 10px 15px;
@@ -327,7 +327,7 @@ body { padding-top: 0 !important; }
         color: #000000 !important;
         border-radius: 10px !important; 
     }
-    .mobile-menu-toggle { font-size: 24px !important; }
+    .mobile-menu-toggle { display: none !important; }
 
     /* Hero Section Mobile */
     .elementor-element-aa4e105 .elementor-heading-title {
