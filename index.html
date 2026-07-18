@@ -2340,12 +2340,43 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 document.addEventListener("DOMContentLoaded", function() {
   const toggle = document.querySelector('.mobile-menu-toggle');
   const navLinks = document.querySelector('.nav-links');
-  
+
+  // Criar overlay dinamicamente
+  let overlay = document.createElement('div');
+  overlay.className = 'mobile-nav-overlay';
+  document.body.appendChild(overlay);
+
+  function openMenu() {
+    navLinks.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    toggle.innerHTML = '<i class="fas fa-times"></i>';
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    toggle.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+
   if (toggle && navLinks) {
     toggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
+      if (navLinks.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
   }
+
+  // Fechar ao clicar no overlay
+  overlay.addEventListener('click', closeMenu);
+
+  // Fechar ao pressionar ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMenu();
+  });
 
   // Dropdown mobile toggle
   const dropdowns = document.querySelectorAll('.nav-links .dropdown > a');
@@ -2369,7 +2400,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // FAQ Accordion Logic
+    // FAQ Accordion Logic
   const accordionItems = document.querySelectorAll('.e-n-accordion-item');
   accordionItems.forEach(item => {
     const summary = item.querySelector('.e-n-accordion-item-title');
