@@ -402,3 +402,9 @@ body {
     }
     .btn-primary-mobile { width: 100%; background: var(--black); color: white; border: none; height: 56px; font-weight: 700; border-radius: 4px; }
 }
+
+@media screen and (max-width: 768px) {
+    input, select, textarea, .main-input, .input-wrapper input {
+        font-size: 16px !important;
+    }
+}

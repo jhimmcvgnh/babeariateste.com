@@ -392,7 +392,7 @@
     border: none;
     outline: none;
     padding: 14px 14px 14px 0;
-    font-size: 0.95rem;
+    font-size: 16px;
     color: #111;
     background: transparent;
     font-family: inherit;
@@ -400,5 +400,15 @@
 
 .input-wrapper input::placeholder {
     color: #bbb;
+}
+
+/* Prevenir zoom no iOS e Android ao focar/digitar nos campos no mobile */
+@media screen and (max-width: 768px) {
+    .booking-modal input,
+    .booking-modal select,
+    .booking-modal textarea,
+    .input-wrapper input {
+        font-size: 16px !important;
+    }
 }
 
