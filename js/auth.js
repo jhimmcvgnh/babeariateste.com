@@ -187,12 +187,15 @@
       const activeTabBtn = document.querySelector(`.auth-tab-btn[data-tab="${tab}"]`);
       if (activeTabBtn) activeTabBtn.classList.add('active');
       hideAlert();
+      const titleEl = document.getElementById('authModalTitle');
       if (tab === 'login') {
         if (loginForm) loginForm.style.display = 'block';
         if (signupForm) signupForm.style.display = 'none';
+        if (titleEl) titleEl.textContent = 'Entrar na conta';
       } else {
         if (loginForm) loginForm.style.display = 'none';
         if (signupForm) signupForm.style.display = 'block';
+        if (titleEl) titleEl.textContent = 'Criar conta';
       }
     }
 

@@ -2423,20 +2423,72 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 <!-- AUTHENTICATION & LOGIN MODAL -->
 <div class="auth-modal-backdrop" id="authModalBackdrop">
+  <!-- Three.js Shader Lines Canvas Container -->
+  <div class="auth-shader-container" id="authShaderContainer"></div>
+
   <div class="auth-modal-card">
-    <button class="auth-modal-close" aria-label="Fechar">&times;</button>
-    
-    <div class="auth-modal-header">
-      <h2>Bem-vindo à Barbearia</h2>
-      <p>Crie sua conta ou faça login para personalizar sua experiência</p>
+    <div class="auth-modal-top-bar">
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" data-tab="signup">Criar conta</button>
+        <button class="auth-tab-btn" data-tab="login">Entrar</button>
+      </div>
+      <button class="auth-modal-close" aria-label="Fechar">&times;</button>
     </div>
 
-    <div class="auth-tabs">
-      <button class="auth-tab-btn active" data-tab="signup">Criar Conta</button>
-      <button class="auth-tab-btn" data-tab="login">Entrar</button>
+    <div class="auth-modal-header">
+      <h2 id="authModalTitle">Criar conta</h2>
     </div>
 
     <div id="authAlert" class="auth-alert"></div>
+
+    <!-- Signup Form -->
+    <form id="authSignupForm">
+      <div class="auth-form-group">
+        <div class="auth-input-wrapper">
+          <i class="fas fa-cut"></i>
+          <input type="text" id="signupShopName" placeholder="Nome da sua barbearia" required>
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <div class="auth-input-wrapper">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="signupEmail" placeholder="Digite seu email (Gmail)" required>
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <div class="auth-input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="signupPassword" placeholder="Sua senha" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-auth-submit">Criar conta</button>
+    </form>
+
+    <!-- Login Form -->
+    <form id="authLoginForm" style="display: none;">
+      <div class="auth-form-group">
+        <div class="auth-input-wrapper">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="loginEmail" placeholder="Digite seu email (Gmail)" required>
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <div class="auth-input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="loginPassword" placeholder="Sua senha" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-auth-submit">Entrar no Sistema</button>
+    </form>
+
+    <div class="auth-divider">
+      <span>OU ENTRAR COM</span>
+    </div>
 
     <!-- Quick Gmail Login -->
     <button type="button" class="btn-gmail-login" id="authGmailBtn">
@@ -2446,81 +2498,30 @@ document.addEventListener("DOMContentLoaded", function() {
         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
       </svg>
-      Entrar rapidamente com Gmail
+      <span>Continuar com Gmail</span>
     </button>
 
-    <div class="auth-divider">
-      <span>ou use seu email e senha</span>
+    <div class="auth-footer-terms">
+      Ao criar uma conta, você concorda com nossos <a href="#" onclick="return false;">Termos & Serviços</a>
     </div>
-
-    <!-- Signup Form -->
-    <form id="authSignupForm">
-      <div class="auth-form-group">
-        <label for="signupShopName">Nome da sua Barbearia</label>
-        <div class="auth-input-wrapper">
-          <i class="fas fa-cut"></i>
-          <input type="text" id="signupShopName" placeholder="Ex: Barbearia El Patron" required>
-        </div>
-      </div>
-
-      <div class="auth-form-row">
-        <div class="auth-form-group">
-          <label for="signupEmail">Email (Gmail)</label>
-          <div class="auth-input-wrapper">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="signupEmail" placeholder="seuemail@gmail.com" required>
-          </div>
-        </div>
-
-        <div class="auth-form-group">
-          <label for="signupPassword">Senha</label>
-          <div class="auth-input-wrapper">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="signupPassword" placeholder="••••••••" required>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="btn-auth-submit">Criar Conta e Acessar</button>
-    </form>
-
-    <!-- Login Form -->
-    <form id="authLoginForm" style="display: none;">
-      <div class="auth-form-row">
-        <div class="auth-form-group">
-          <label for="loginEmail">Email (Gmail)</label>
-          <div class="auth-input-wrapper">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="loginEmail" placeholder="seuemail@gmail.com" required>
-          </div>
-        </div>
-
-        <div class="auth-form-group">
-          <label for="loginPassword">Senha</label>
-          <div class="auth-input-wrapper">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="loginPassword" placeholder="••••••••" required>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="btn-auth-submit">Entrar no Sistema</button>
-    </form>
   </div>
 </div>
 
 <!-- BARBERSHOP NAME CUSTOMIZER MODAL -->
 <div class="auth-modal-backdrop" id="shopModalBackdrop">
   <div class="auth-modal-card">
-    <button class="auth-modal-close" aria-label="Fechar">&times;</button>
-    
+    <div class="auth-modal-top-bar">
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" type="button">Personalizar</button>
+      </div>
+      <button class="auth-modal-close" aria-label="Fechar">&times;</button>
+    </div>
+
     <div class="auth-modal-header">
       <h2>Personalizar Barbearia</h2>
-      <p>Escolha o nome da sua barbearia para ser exibido em todo o site</p>
     </div>
 
     <div class="auth-form-group">
-      <label for="inputCustomShopName">Nome da Barbearia</label>
       <div class="auth-input-wrapper">
         <i class="fas fa-store"></i>
         <input type="text" id="inputCustomShopName" placeholder="Ex: Barbearia Estilo & Arte">
@@ -2531,8 +2532,9 @@ document.addEventListener("DOMContentLoaded", function() {
   </div>
 </div>
 
-<!-- AUTH & SHOP CUSTOMIZER SCRIPTS -->
-<script src="js/auth.js?v=bw_v2"></script>
-<script src="js/shop-customizer.js?v=bw_v2"></script>
+<!-- AUTH & SHADER SCRIPTS -->
+<script src="js/shader-lines.js?v=bw_v3"></script>
+<script src="js/auth.js?v=bw_v3"></script>
+<script src="js/shop-customizer.js?v=bw_v3"></script>
 <script src="js/booking-modal.js"></script>
 </body></html>
